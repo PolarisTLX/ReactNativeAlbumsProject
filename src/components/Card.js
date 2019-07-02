@@ -2,10 +2,10 @@ import React from 'react';
 import { View } from 'react-native';
 
 const Card = (props) => {
+  /* props.children is to render any components that get PASSED to this */
+  /* In Other Words: passed components show up as props.children */
   return (
     <View style={styles.constainerStyle}>
-      {/* props.children is to render any components that get PASSED to this */}
-      {/* In Other Words: passed components show up as props.children */}
       {props.children}
     </View>
   );
