@@ -57,9 +57,10 @@
 // lining up elements/components side-by-side in react native 
 // with separating in different View containers and flexDirection: 'row':
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Linking } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
+import Button from './Button';
 
 // NOTE: to clean up the length of the props.album....
 // see video 4 from folder 8 at 3:00 min
@@ -79,6 +80,7 @@ const AlbumDetail = (props) => {
   /* here we will pass any element between <Card></Card> to the Card component, they are available as {props.children} */
   return (
     <Card>
+
       <CardSection>
         <View style={thumbnailContainerStyle}>
           <Image           
@@ -91,12 +93,20 @@ const AlbumDetail = (props) => {
           <Text>{props.album.artist}</Text>
         </View>
       </CardSection>
+
       <CardSection>
         <Image 
           source={{ uri: props.album.image }} 
           style={imageStyle}
         />
       </CardSection>
+
+      <CardSection>
+        <Button passedPressFunction={() => Linking.openURL(props.album.url)} >
+          Buy Album
+        </Button>
+      </CardSection>
+
     </Card>
   );
 };
