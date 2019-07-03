@@ -66,20 +66,36 @@ import CardSection from './CardSection';
 
 
 const AlbumDetail = (props) => {
+
+  const { 
+    headerContentStyle, 
+    albumThumbnailStyle,
+    thumbnailContainerStyle,
+    headerTextStyle,
+    imageStyle,
+  } = styles;
+
+
   /* here we will pass any element between <Card></Card> to the Card component, they are available as {props.children} */
   return (
     <Card>
       <CardSection>
-        <View>
+        <View style={thumbnailContainerStyle}>
           <Image           
             source={{ uri: props.album.thumbnail_image }} 
-            style={styles.albumThumbnailStyle}
+            style={albumThumbnailStyle}
           />
         </View>
-        <View style={styles.headerContentStyle}>
-          <Text>{props.album.title}</Text>
+        <View style={headerContentStyle}>
+          <Text style={headerTextStyle}>{props.album.title}</Text>
           <Text>{props.album.artist}</Text>
         </View>
+      </CardSection>
+      <CardSection>
+        <Image 
+          source={{ uri: props.album.image }} 
+          style={imageStyle}
+        />
       </CardSection>
     </Card>
   );
@@ -90,9 +106,26 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'space-around'
   },
+  headerTextStyle: {
+    fontSize: 18,
+  },
   albumThumbnailStyle: {
     height: 50,
     width: 50
+  },
+  thumbnailContainerStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  imageStyle: {
+    height: 300,
+    // NOTE: React Native trick:  
+    // to make something the full width (of its container), 
+    // need flex: 1 + width: null
+    flex: 1,
+    width: null
   }
 }
 
